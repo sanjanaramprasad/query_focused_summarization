@@ -1,0 +1,71 @@
+# ========================================================================
+#
+# 👋👋 Welcome to the annotation builder!
+#
+# This contains your template, and the below editor contains your data.
+#
+# Feel free to customize this template, or choose one of the provided
+# examples or fully built interfaces from the drop-down.
+#
+# ========================================================================
+
+# Metadata about your interface. 
+#   "labels" change text displayed to the annotator and "names" change the
+#   backend object names
+template_name: demo_qfs
+template_label: Demo Interface QFS
+template_description: Annotation 
+
+interface_text:
+    typology:
+        context_label: ARTICLE
+        source_label: QUERY/ASPECT
+        target_label: SUMMARY
+    questions:
+        likert_1: 1 - minor 
+        likert_2: 2 - somewhat minor 
+        likert_3: 3 - major
+
+    annotation_viewer:
+        header: Add Annotations
+        not_annotated_text_1: this span needs additional annotations, click
+        not_annotated_text_2: to start!
+
+    
+display:
+  - hide-context
+  - side-by-side
+
+edits:
+-   name: inconsistent_span
+    label: "Inconsistent Span"
+    enable_output: true
+    color: red
+    icon: fa-triangle-exclamation
+    annotation:
+    -   name: error_type
+        question: "What is the type of inconsistency?"
+        options:
+            -   name: intrinsic_error
+                label: "Misunderstanding of Article"
+
+            -   name: extrinsic_error
+                label: "Out of Article"
+                question: "Is the information verifiable?"
+                options:
+                -   name: verifiable_error
+                    label: "Verifiable"
+                -   name: unverifiable_error
+                    label: "Unverifiable"
+
+            -   name: other_error
+                label: "Other"
+                question: "Explain"
+                options: textbox 
+
+    -   name: severity_score
+        question: "Rate the severity of the inconsistency"
+        options: likert-3
+
+
+    
